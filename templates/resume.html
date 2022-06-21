@@ -1,0 +1,431 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+	<ul class="nav nav-pills nav-fill">
+	  <li class="nav-item">
+	    <a class="nav-link " href="p_info">Personal Info</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="edu">Education</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="exp">Experience</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="projects">Projects</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link " href="skills_interest">Skills and Interests</a>
+	  </li>
+	</ul>
+
+	<div class="progress" style="margin-left: 20px; margin-right: 20px; margin-bottom: 5px;">
+	  <div class="progress-bar bg-info" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">100%</div>
+	</div>
+{% endblock %}
+
+
+{% block body %}
+{% if "name" in session  %}
+
+	<div class="jumbotron" style="margin: 20px; ">
+	  <h1 class="display-5">Resume created successfully!</h1>
+	  <p class="lead">Use the <strong>download button</strong> below to download your resume.</p>
+
+		<link rel="stylesheet" type="text/css" href="static/resume.css">
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+		<hr class="my-4">
+		<small data-html2canvas-ignore>( For mobile users: This is a wrapped template view. Use 'desktop mode' to view the proper template.)</small>
+		<div id="container">
+			<link rel="stylesheet" type="text/css" href="static/generated.css">
+			<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+
+			<div class="header">
+				    <div class="full-name">
+				      <span class="first-name">{{ _name if _name else "NOT MY NAME" }}</span>
+				    </div>
+				    <div class="contact-info">
+				      <span class="email">Email: </span>
+				      <span class="email-val">{{ _email if _email else "email@gmail.com" }}</span>
+				      <span class="separator"></span>
+				      <span class="phone">Phone: </span>
+				      <span class="phone-val">{{ phone if phone else "+234 800 000 0000" }}</span>
+				      <br>
+			  	      <span class="address">Address: {{ addr if addr else "123 Random street, City, State, Country" }} {{ (',' + cty) if cty }}</span>
+			  	      {% if _zip != '' %}
+				  	      <span class="address" style="margin-left: 20px;">Zip: {{ _zip if _zip else "(zip code)" }}</span>
+				  	  {% else %}
+				  	  	  <span></span>
+				  	  {% endif %}
+				    </div>
+
+				    <div class="contact-info two">
+				      <span class="email">Twitter: </span>
+				      <span class="email-val"> <a href="">{{ twitter if twitter else "________" }}</a> </span>
+				      <span class="separator"></span>
+				      <span class="phone">LinkedIn: </span>
+				      <span class="phone-val"><a href="">{{ linkedin if linkedin else "________" }}</a></span>
+				      <span class="separator"></span>
+				      <span class="phone">Others: </span>
+				      <span class="phone-val"><a href="">{{ other if other else "________" }}</a></span>
+				    </div>
+
+				    <div class="about">
+				      <span class="position">{{ occup if occup else "My Occupation" }}</span>
+				      <span class="desc">
+				        {{ about.title() if about else "I am random user that have refused to fill in information about myself. Perhaps I am only testing this app in order to give feddback to the creator on how to make it better. :)"}}
+				      </span>
+				    </div>
+			</div>
+
+		    <div class="details">
+		    	{% if  "company1" in session and (company1 != '' or company2 != '') %}
+				    <div class="section">
+				        <div class="section__title">Experience</div>
+					    <div class="section__list">
+				      	{% if company1 != '' %}
+					        <div class="section__list-item">
+					          <div class="left">
+					            <div class="name">{{ company1 if company1 else "Company Name" }}</div>
+					            <div class="addr">{{ location1 if location1 else "Location" }}</div>
+					            <div class="duration">{{ from1 if from1 else "From" }} to {{ to1 if to1 else "To" }}</div>
+					          </div>
+					          <div class="right">
+					            <div class="name">{{ role1 if role1 else "Role" }}</div>
+					            <div class="desc">{{ desc1 if desc1 else "Job Description" }}</div>
+					          </div>
+					        </div>
+						    {% else %}
+						    	<div></div>
+						    {% endif %}
+
+						    {% if company2 != '' %}
+					        <div class="section__list-item">
+					          <div class="left">
+					            <div class="name">{{ company2 if company2 else "Company Name" }}</div>
+					            <div class="addr">{{ location2 if location2 else "Location" }}</div>
+					            <div class="duration">{{ from2 if from2 else "From" }} to {{ to2 if to2 else "To" }}</div>
+					          </div>
+					          <div class="right">
+					            <div class="name">{{ role2 if role2 else "Role" }}</div>
+					            <div class="desc">{{ desc2 if desc2 else "Job Description" }}</div>
+					          </div>
+					        </div>
+						    {% else %}
+						    	<div></div>
+						    {% endif %}
+					    </div>
+				    </div>
+			    {% else %}
+			    	<span></span>
+		        {% endif %}
+
+		        {% if school1 != '' or school2 != '' %}
+				    <div class="section">
+				      <div class="section__title">Education</div>
+				      <div class="section__list">
+				      		{% if school1 != '' %}
+						        <div class="section__list-item">
+						            <div class="left">
+							            <div class="name">{{ school1 }}</div>
+							            <div class="addr">{{ sch_loc1 }}</div>
+							            {% if sch_from1 != '' %}
+							            	<div class="duration">{{ sch_from1 }} - {{ sch_to1 }}</div>
+							            {% else %}
+							            	<span></span>
+							            {% endif %}
+						            </div>
+						            <div class="right">
+							            <div class="name">{{ cert1 }} {{ course1 }} </div>
+							            <div class="desc">{{ sch_desc1 }}</div>
+						            </div>
+						        </div>
+						    {% else %}
+						    	<span></span>
+					        {% endif %}
+
+					        {% if school2 != '' %}
+						        <div class="section__list-item">
+						            <div class="left">
+							            <div class="name">{{ school2 }}</div>
+							            <div class="addr">{{ sch_loc2 }}</div>
+							            {% if sch_from2 != '' %}
+							            	<div class="duration">{{ sch_from2 }} - {{ sch_to2 }}</div>
+							            {% else %}
+							            	<span></span>
+							            {% endif %}
+						            </div>
+						            <div class="right">
+							            <div class="name">{{ cert2 }} {{ course2 }} </div>
+							            <div class="desc">{{ sch_desc2 }}</div>
+						            </div>
+						        </div>
+						    {% else %}
+						    	<span></span>
+					        {% endif %}
+				      </div>
+				    </div>
+			    {% else %}
+			    	<span></span>
+		        {% endif %}
+
+		        {% if projtit1 != '' or projtit2 != '' %}
+			        <div class="section">
+				        <div class="section__title">Projects</div>
+				        <div class="section__list">
+
+					       	{% if projtit1 != '' %}
+						         <div class="section__list-item">
+						           <div class="name">{{ projtit1 }} ({{ projdate1 }}) </div>
+						           <div class="text">{{ projdesc1 }}</div>
+						         </div>
+						    {% else %}
+						    	<span></span>
+					        {% endif %}
+
+					        {% if projtit2 != '' %}
+						         <div class="section__list-item">
+						           <div class="name">{{ projtit2 }} ({{ projdate2 }}) </div>
+						           <div class="text">{{ projdesc2 }}</div>
+						         </div>
+						    {% else %}
+						    	<span></span>
+					        {% endif %}
+				        </div>
+				    </div>
+			    {% else %}
+			    	<span></span>
+	        {% endif %}
+	         <!-- <div class="html2pdf__page-break"></div> -->
+				{% if skill1 != "" or skill2 != "" or skill3 != "" or skill4 != "" %}
+				    <div class="section ">
+				        <div class="section__title left">Skills</div>
+				        <div class="section__title right prof">Proficiency  level<small data-html2canvas-ignore>(Select Level before downloading)</small></div>
+				        <div class="skills">
+					        	{% if skill1 != "" %}
+							        <div class="skills__item">
+								        <div class="left">
+								           	<div class="name">
+								             {{ skill1 }}
+								             </div>
+								        </div>
+							            <div class="right prof">
+														<input  id="ck1" type="checkbox" checked/>
+							              <label for="ck1"></label>
+			                      <input id="ck2" type="checkbox" checked/>
+
+							              <label for="ck2"></label>
+			                       <input id="ck3" type="checkbox" />
+
+							              <label for="ck3"></label>
+			                       <input id="ck4" type="checkbox" />
+									          <label for="ck4"></label>
+			                      <input id="ck5" type="checkbox" />
+							              <label for="ck5"></label>
+							            </div>
+							        </div>
+							    {% else %}
+							    	<span></span>
+						        {% endif %}
+
+						        {% if skill2 != "" %}
+							        <div class="skills__item">
+								        <div class="left">
+								           	<div class="name">
+								             {{ skill2 }}
+								             </div>
+								        </div>
+							            <div class="right prof">
+														<input  id="ck1" type="checkbox" checked/>
+							              <label for="ck1"></label>
+			                      <input id="ck2" type="checkbox" checked/>
+
+							              <label for="ck2"></label>
+			                       <input id="ck3" type="checkbox" />
+
+							              <label for="ck3"></label>
+			                       <input id="ck4" type="checkbox" />
+									          <label for="ck4"></label>
+			                      <input id="ck5" type="checkbox" />
+							              <label for="ck5"></label>
+							            </div>
+							        </div>
+							    {% else %}
+							    	<span></span>
+						        {% endif %}
+
+						        {% if skill3 != "" %}
+							        <div class="skills__item">
+								        <div class="left">
+								           	<div class="name">
+								             {{ skill3 }}
+								             </div>
+								        </div>
+							            <div class="right prof">
+														<input  id="ck1" type="checkbox" checked/>
+							              <label for="ck1"></label>
+			                      <input id="ck2" type="checkbox" checked/>
+
+							              <label for="ck2"></label>
+			                       <input id="ck3" type="checkbox" />
+
+							              <label for="ck3"></label>
+			                       <input id="ck4" type="checkbox" />
+									          <label for="ck4"></label>
+			                      <input id="ck5" type="checkbox" />
+							              <label for="ck5"></label>
+							            </div>
+							        </div>
+							    {% else %}
+							    	<span></span>
+						        {% endif %}
+
+						        {% if skill4 != "" %}
+							        <div class="skills__item">
+								        <div class="left">
+								        	<div class="name">
+								             {{ skill4 }}
+								         	</div>
+								        </div>
+							            <div class="right prof">
+														<input  id="ck1" type="checkbox" checked/>
+							              <label for="ck1"></label>
+			                      <input id="ck2" type="checkbox" checked/>
+
+							              <label for="ck2"></label>
+			                       <input id="ck3" type="checkbox" />
+
+							              <label for="ck3"></label>
+			                       <input id="ck4" type="checkbox" />
+									          <label for="ck4"></label>
+			                      <input id="ck5" type="checkbox" />
+							              <label for="ck5"></label>
+							            </div>
+							        </div>
+							    {% else %}
+							    	<span></span>
+						        {% endif %}
+					    </div>
+					</div>
+			    {% else %}
+			    	<span></span>
+		        {% endif %}
+
+		        {% if interest1 != "" or interest2 != "" or interest3 != ""%}
+					<div class="section">
+					    <div class="section__title">Interests</div>
+					        <div class="section__list">
+					           <div class="section__list-item">
+					           		{% if interest1 != "" %}
+					           			<span class="interest">{{ interest1 }}</span>
+					           		{% else %}
+					           			<span></span>
+					           		{% endif %}
+
+					           		{% if interest2 != "" %}
+					           			<span class="interest">{{ interest2 }}</span>
+					           		{% else %}
+					           			<span></span>
+					           		{% endif %}
+
+					           		{% if interest3 != "" %}
+					           			<span class="interest">{{ interest3 }}</span>
+					           		{% else %}
+					           			<span></span>
+					           		{% endif %}
+					           	</div>
+					        </div>
+					    </div>
+					</div>
+			    {% else %}
+			    	<span></span>
+		        {% endif %}
+			</div>
+		</div>
+	    <form id="form1" class="center">
+		    <!-- <input type="button" value="Download" id="PrintNow" onclick="takeScreenshot()" /> -->
+		    <button type="submit" class="btn btn-outline-success" value="Download" id="PrintNow" onclick="takeScreenshot()">Download</button>
+	    </form>
+
+			  <hr class="my-4">
+		  <p class="lead">
+		  	<span>
+		  		Go back to  <a href="p_info">edit your details.</a>
+		  	</span>
+		  	<span>
+		  		Or  <a href="clear6">create another resume</a>  from scratch
+		  	</span>
+		  </p>
+
+
+
+	</div>
+		<br>
+
+
+
+		<script type="text/javascript">
+		$(document).ready(function($)
+		{
+
+			$(document).on('click', '#PrintNow', function(event)
+			{
+				event.preventDefault();
+
+				//credit : https://ekoopmans.github.io/html2pdf.js
+
+				var element = document.getElementById('container');
+
+				//easy
+				// html2pdf().from(element).save();
+
+				//custom file name
+				// html2pdf().set({filename: 'my_resume.pdf'}).from(element).save();
+
+
+				//more custom settings
+				var opt =
+				{
+				  margin:       0,
+				  filename:     'my-resume.pdf',
+				  // enableLinks:  true
+				  image:        { type: 'jpeg', quality: 1},
+				  html2canvas:  { scale: 3, backgroundColor: null},
+				  jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+				};
+
+				// New Promise-based usage:
+				html2pdf().set(opt).from(element).save();
+
+
+			});
+
+
+
+		});
+		</script>
+
+
+
+	<!-- 	{% with messages = get_flashed_messages() %}
+				{% if messages %}
+						{% for msg in messages %}
+							 <p style="text-align: center;">{{msg}}</p>
+						{% endfor %}
+				{% endif %}
+		{% endwith %}
+	 -->
+
+{% else %}
+	<div class="jumbotron" style="margin: 20px; ">
+	  <h1 class="display-4">No resume created, yet!</h1>
+	  <p class="lead">The 'Personal Info' form <strong>must</strong> be filled. Any other form is optional.</p>
+	  <p>Fill the 'Personal Info' form now to start creating your resume.</p>
+	  <a class="btn btn-primary btn-lg" href="p_info" role="button">Get started</a>
+	  <hr class="my-4">
+	  <p class="lead"><strong>Do you know?</strong></p>
+	  <p>You can generate the default template by submitting <strong>only</strong> a blank 'Personal Info' form, then click 'View Template' (<a href="p_info">Try it!</a>)</p>
+	</div>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+	<ul class="nav nav-pills nav-fill">
+	  <li class="nav-item">
+	    <a class="nav-link " href="p_info">Personal Info</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link active" href="edu">Education</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link " href="exp">Experience</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link " href="projects">Projects</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link " href="skills_interest">Skills and Interests</a>
+	  </li>
+	</ul>
+
+	<div class="progress" style="margin-left: 20px; margin-right: 20px; margin-bottom: 5px;">
+	  <div class="progress-bar bg-info" role="progressbar" style="width: 20%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">20%</div>
+	</div>
+{% endblock %}
+
+{% block body %}
+<form action=# method="POST">
+	<div class="card Education p-3 mb-2 bg-secondary text-white">
+	  <div class="card-body" >				
+			<div class="Education">
+				<h3>Education</h3>
+				<br>
+				<div class="edu1">
+					<h5>Education 1</h5>
+				    <div class="form-row">
+					    <div class="form-group col-md-6">
+					      <label>School Name</label>
+					      <input type="text" class="form-control" placeholder="School Name" name="school1" value="{{ school1 if school1 }}">
+					    </div>
+					    <div class="form-group col-md-4">
+					      <label for="inputEmail4">Course of study</label>
+					      <input type="text" class="form-control" id="inputEmail4" placeholder="Course of study" name="course1" value="{{ course1 if course1 }}">
+					    </div>
+					    <div class="form-group col-md-2">
+					      <label for="inputEmail4">Certfication</label>
+					      <input type="text" class="form-control" id="inputEmail4" placeholder="PhD, MSc, BSc etc" name="cert1" value="{{ cert1 if cert1 }}">
+					    </div>
+				    </div>
+
+					<div class="form-row">
+					    <div class="form-group col-md-4">
+					      <label for="inputZip">Location</label>
+					      <input type="text" class="form-control" id="inputZip" placeholder="School Location" name="sch_loc1" value="{{ sch_loc1 if sch_loc1 }}">
+					    </div>
+					    <div class="form-group col-md-4">
+					      <label for="inputZip">From</label>
+					      <input type="text" class="form-control" id="inputZip" placeholder="Month-Year" name="sch_from1" value="{{ sch_from1 if sch_from1 }}">
+					    </div>
+					    <div class="form-group col-md-4">
+					      <label for="inputZip">To</label>
+					      <input type="text" class="form-control" id="inputZip" placeholder="Month-Year" name="sch_to1" value="{{ sch_to1 if sch_to1 }}">
+					    </div>
+				    </div>
+				    <div class="form-group">
+					    <label for="exampleFormControlTextarea1">Description</label>
+					    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write briefly about the course of study and relevant skills gained" name="sch_desc1">{{ sch_desc1 if sch_desc1 }}</textarea>
+					</div>
+				</div>
+				<br>
+
+				<div class="edu2">
+					<h5>Education 2</h5>
+				    <div class="form-row">
+					    <div class="form-group col-md-6">
+					      <label>School Name</label>
+					      <input type="text" class="form-control" placeholder="School Name" name="school2"  value="{{ school2 if school2 }}">
+					    </div>
+					    <div class="form-group col-md-4">
+					      <label for="inputEmail4">Course of study</label>
+					      <input type="text" class="form-control" id="inputEmail4" placeholder="Course of study" name="course2" value="{{ course2 if course2 }}">
+					    </div>
+					    <div class="form-group col-md-2">
+					      <label for="inputEmail4">Certfication</label>
+					      <input type="text" class="form-control" id="inputEmail4" placeholder="PhD, MSc, BSc etc" name="cert2"   value="{{ cert2 if cert2 }}">
+					    </div>
+				    </div>
+
+					<div class="form-row">
+					    <div class="form-group col-md-4">
+					      <label for="inputZip">Location</label>
+					      <input type="text" class="form-control" id="inputZip" placeholder="School Location" name="sch_loc2"   value="{{ sch_loc2 if sch_loc2 }}">
+					    </div>
+					    <div class="form-group col-md-4">
+					      <label for="inputZip">From</label>
+					      <input type="text" class="form-control" id="inputZip" placeholder="Month-Year" name="sch_from2"   value="{{ sch_from2 if sch_from2 }}">
+					    </div>
+					    <div class="form-group col-md-4">
+					      <label for="inputZip">To</label>
+					      <input type="text" class="form-control" id="inputZip" placeholder="Month-Year" name="sch_to2"    value="{{ sch_to2 if sch_to2 }}">
+					    </div>
+				    </div>
+				    <div class="form-group">
+					    <label for="exampleFormControlTextarea2">Description</label>
+					    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write briefly about the course of study and relevant skills gained" name="sch_desc2">{{ sch_desc2 if sch_desc2 }}</textarea>
+					</div>
+				</div>
+			</div>
+
+
+	  </div>
+	</div>
+	<div style="text-align: center;">
+		   <button type="submit" class="btn btn-outline-success" value="submit">Save and continue</button>			
+
+		   <a class="btn btn-outline-danger" href="clear2" role="button">Clear current page</a>		
+	</div>
+</form>
+<br>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+	<ul class="nav nav-pills nav-fill">
+	  <li class="nav-item">
+	    <a class="nav-link active" href="p_info">Personal Info<small></small></a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="edu">Education</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="exp">Experience</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="projects">Projects</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="skills_interest">Skills and Interests</a>
+	  </li>
+	</ul>
+
+	<div class="progress" style="margin-left: 20px; margin-right: 20px; margin-bottom: 5px;">
+	  <div class="progress-bar bg-info" role="progressbar" style="width: 1.5%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">0%</div>
+	</div>
+{% endblock %}
+
+{% block body %}
+<form action=# method="POST">
+	<div class="card about p-3 mb-2 bg-secondary text-white">
+	  <div class="card-body">
+
+
+		  	<div class="about">
+		  		<h3>Personal Info</h3>
+				    <div class="form-row">
+					    <div class="form-group col-md-6">
+					      <label>Fullname *</label>
+					      <input type="text" class="form-control" placeholder="First name first" name="name" 	value= "{{ name if name }}">
+					    </div>
+					    <div class="form-group col-md-6">
+					      <label for="inputEmail4">Email *</label>
+					      <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email_" value="{{ email if email }}">
+					    </div>
+				    </div>
+
+				    <div class="form-row">
+					    <div class="form-group col-md-6">
+					      <label>Phone Number *</label>
+					      <input type="text" class="form-control" placeholder="+234 800 0000 000" name="phone"  value="{{ phone if phone }}">
+					    </div>
+					    <div class="form-group col-md-6">
+					      <label for="inputPassword4">Occupation *</label>
+					      <input type="text" class="form-control" id="inputPassword4" placeholder="Occupation" name="occup" value="{{ occup if occup }}">
+					    </div>
+				    </div>
+
+					<div class="form-group">
+					    <label for="inputAddress">Address *</label>
+					    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address"  value="{{ address if address }}">
+					</div>
+
+					<div class="form-row">
+					    <div class="form-group col-md-6">
+					      <label for="inputCity">City *</label>
+					      <input type="text" class="form-control" id="inputCity" name="city"  value="{{ city if city }}" placeholder="City">
+					    </div>
+					    <div class="form-group col-md-4">
+					      <label for="inputState">State</label>
+					      <select id="inputState" class="form-control" name="state">
+					        <option selected>Choose...</option>
+				            
+					      </select>
+						</div>
+					    <div class="form-group col-md-2">
+					      <label for="inputZip">Zip</label>
+					      <input type="text" class="form-control" id="inputZip" name="zip"  value="{{ _zip if _zip }}" placeholder="Zip code">
+					    </div>
+					</div>
+					<div class="form-row">
+					    <div class="form-group col-md-4">
+					      <label for="inputZip">Twitter</label>
+					      <input type="text" class="form-control" id="inputZip" placeholder="Twitter Link" name="twitter"  value="{{ twitter if twitter }}">
+					    </div>
+					    <div class="form-group col-md-4">
+					      <label for="inputZip">LinkedIn</label>
+					      <input type="text" class="form-control" id="inputZip" placeholder="LinkedIn" name="linkedin"  value="{{ linkedin if linkedin }}">
+					    </div>
+					    <div class="form-group col-md-4">
+					      <label for="inputZip">Others</label>
+					      <input type="text" class="form-control" id="inputZip" placeholder="Github, Facebook etc" name="other"  value="{{ other if other }}">
+					    </div>
+				    </div>
+
+				    <div class="form-group">
+					    <label for="exampleFormControlTextarea1">About Yourself *</label>
+					    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write briefly about yourself" name="about"  >{{ abt if abt }}</textarea>
+					</div>
+			</div>
+	  </div>
+	</div>
+	<div style="text-align: center;">
+		   <button type="submit" class="btn btn-outline-success" value="submit">Save and continue</button>			
+
+		   <a class="btn btn-outline-danger" href="clear" role="button">Clear current page</a>		
+	</div>
+</form>
+<br>
+{% endblock %}
